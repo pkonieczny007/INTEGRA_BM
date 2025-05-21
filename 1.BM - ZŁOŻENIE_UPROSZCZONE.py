@@ -14,7 +14,7 @@ def find_column_name(data_columns, possible_names):
             return name
     return None
 
-def generate_zlozenie_xml(data, mapping, output_file="output_zlozenie.xml"):
+def generate_zlozenie_xml(data, mapping, output_file="output_zlozenie_BM.xml"):
     """
     Generuje plik XML dla komend "BM_ZŁOŻENIE" na podstawie danych z Excela i mapowania.
     """
@@ -37,7 +37,7 @@ def generate_zlozenie_xml(data, mapping, output_file="output_zlozenie.xml"):
     for _, row in data.iterrows():
         # Sprawdzenie, czy wartość w kolumnie odpowiadającej "BM_TYP" to "BM_ZŁOŻENIE"
         typ_col = column_mapping.get("BM_TYP")
-        if typ_col is not None and row[typ_col] == "BM_ZŁOŻENIE":
+        if typ_col is not None and row[typ_col] == "ZŁOŻENIE":
             command = ET.SubElement(root, "COMMAND", Name="Import", TblRef="PRODUCTS")
             for field in assembly_template:
                 # Jeśli nie zdefiniowano FldValue na stałe, pobieramy wartość z odpowiedniej kolumny
@@ -66,7 +66,7 @@ def generate_z_bazy_xml(data, output_file="output_z_bazy_do_zlozen.xml"):
     for _, row in data.iterrows():
         xml_lines.append('<COMMAND Name="Import" TblRef="PR_SSTT_00000100">')
         xml_lines.append(f'    <FIELD FldRef="PrdRefOrg" FldValue="{row["BM_ZŁOŻENIE"]}" FldType="20"/>')
-        xml_lines.append(f'    <FIELD FldRef="PrdRefDst" FldValue="{row["BM_REFERENCJA"]}" FldType="20"/>')
+        xml_lines.append(f'    <FIELD FldRef="PrdRefDst" FldValue="{row["REFERENCJA_ELEMENTU"]}" FldType="20"/>')
         xml_lines.append(f'    <FIELD FldRef="PQUANT" FldValue="{row["Algorytm dla Anz"]}" FldType="100"/>')
         xml_lines.append('</COMMAND>')
     
