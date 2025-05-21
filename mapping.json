@@ -9,6 +9,7 @@
 	 "Stufe": ["Stufe", "STUFE", "stufe"],
     "ZLOZENIE": ["ZŁOŻENIE", "zlozenie", "ZLOZENIE"],
 	"Width": ["Width", "Abmes_2"],
+	"BM_TYP": ["BM_TYP", "bm_typ", "bm_Type"],
 	"Anz": ["Amount", "ANZ", "anz", "Anz."]
 	 
 }
